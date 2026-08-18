@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: flower_shop_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./flower_shop.db:/app/flower_shop.db
+    restart: always
