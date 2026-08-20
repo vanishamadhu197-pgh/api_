@@ -1,8 +1,9 @@
 import requests
 import json
 import time
+import os
 
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
 
 def pretty_print(title, data):
     print(f"\n=== {title} ===")

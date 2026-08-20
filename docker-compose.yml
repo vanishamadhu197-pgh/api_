@@ -8,4 +8,12 @@ services:
       - "8000:8000"
     volumes:
       - ./flower_shop.db:/app/flower_shop.db
+    environment:
+      - DB_ENGINE=${DB_ENGINE:-sqlite}
+      - DB_HOST=${DB_HOST:-localhost}
+      - DB_USER=${DB_USER:-root}
+      - DB_PASSWORD=${DB_PASSWORD:-}
+      - DB_DATABASE=${DB_DATABASE:-flower_shop}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: always
