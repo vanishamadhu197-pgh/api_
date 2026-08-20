@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel, Field
 from typing import List, Optional
+from datetime import datetime, date
 from contextlib import asynccontextmanager
 import database
 
@@ -40,7 +41,7 @@ class ProductUpdate(BaseModel):
 
 class ProductResponse(ProductBase):
     product_id: int
-    created_at: str
+    created_at: datetime
 
     class Config:
         from_attributes = True
@@ -50,8 +51,8 @@ class OrderBase(BaseModel):
     customer_name: str = Field(..., min_length=1, max_length=100, example="John Doe")
     customer_phone: Optional[str] = Field(None, max_length=20, example="+1-555-0199")
     delivery_address: Optional[str] = Field(None, max_length=255, example="123 Blossom Lane, Garden City")
-    order_date: str = Field(..., example="2026-08-19")  # YYYY-MM-DD format
-    delivery_date: Optional[str] = Field(None, example="2026-08-20")
+    order_date: date = Field(..., example="2026-08-19")  # YYYY-MM-DD format
+    delivery_date: Optional[date] = Field(None, example="2026-08-20")
     total_amount: float = Field(..., gt=0, example=89.97)
     order_status: Optional[str] = Field("Pending", max_length=30, example="Pending")
 
